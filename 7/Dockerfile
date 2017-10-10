@@ -1,4 +1,4 @@
-FROM php-7-centos7:latest
+FROM php-70-centos7:latest
 
 
 #bashrc

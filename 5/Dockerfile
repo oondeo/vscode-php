@@ -16,7 +16,8 @@ USER root
 
 #fs.inotify.max_user_watches=524288
 #NODE_PKGS="rh-nodejs4 rh-nodejs4-npm rh-nodejs4-nodejs-nodemon nss_wrapper"
-ENV NODEJS_VERSION=6 NODE_PKGS="" \
+ENV VSCODE_VERSION="1.16" \
+    NODEJS_VERSION=6 NODE_PKGS="" \
     VSCODE_PKGS="git mercurial unzip code" \
     INSTALL_PKGS="socat zsh vim curl xorg-x11-xserver-utils \
         gtk3 liberation-fonts-common liberation-sans-fonts xcb-util" \
@@ -117,6 +118,7 @@ user default
 COPY zshrc $HOME/.zshrc
 #install plugins
 RUN /usr/bin/code --install-extension felixfbecker.php-intellisense \
+    /usr/bin/code --install-extension ecmel.vscode-html-css \
     /usr/bin/code --install-extension felixfbecker.php-debug \
     && /usr/bin/code --install-extension hbenl.vscode-firefox-debug
 
@@ -131,7 +133,7 @@ env BROWSER=/usr/bin/firefox \
 #socat EXEC:'docker exec -i -u root vscode socat unix-l\:/tmp/.X11-unix/X0 -' unix:/tmp/.X11-unix/X0
 
 
-CMD ["code --verbose"]
+#CMD ["code --verbose"]
 
 ##mount .gitconfig and .ssh dirs 
 #docker run -v ~/.ssh:$HOME/.ssh -v ~/.gitconfig:$HOME -e DISPLAY=172.17.0.1:6000 oondeo/vscode-python
